@@ -123,7 +123,7 @@
     "project": "Projet",
     "source": "Code source sur GitHub",
     "license": "Licence",
-    "issues": "Signaler un problème",
+    "issues": "Signaler un problème ou proposer une amélioration",
     "copyright": "© {year} {owner}. Code source visible, tous droits réservés.",
     "disclaimer": "Projet de fan non affilié à Nintendo, The Pokémon Company, GAME FREAK ou PokeMMO. Pokémon et les noms associés sont des marques de leurs propriétaires respectifs."
   },
@@ -416,7 +416,8 @@
     "ago": "il y a {m} min",
     "ability": "Talent : {ability}",
     "hms": "CS : {hms}",
-    "alphaChip": "Alpha"
+    "alphaChip": "Alpha",
+    "swarmChip": "Essaim"
   },
   "guides": {
     "title": "Guides",

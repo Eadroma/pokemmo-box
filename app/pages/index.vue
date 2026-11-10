@@ -71,35 +71,50 @@ const party = computed(() => Array.from({ length: 6 }, (_, i) => collection.valu
         </template>
       </i18n-t>
     </div>
-    <div
-      v-if="live.length"
-      class="live"
-    >
-      <NuxtLink
-        v-for="s in live"
-        :key="s.id"
-        to="/essaims"
-        class="spawn"
-        :class="s.kind"
+    <template v-if="live.length">
+      <!-- Alphas and swarms in their own labelled groups: same card, different colour and chip. -->
+      <template
+        v-for="group in [{ kind: 'alpha', list: alphas }, { kind: 'swarm', list: swarms }] as const"
+        :key="group.kind"
       >
-        <span class="slot"><img
-          v-if="mon(s)"
-          class="px"
-          :src="icon(mon(s)!.id)"
-          alt=""
-          width="36"
-          height="36"
-        ></span>
-        <span class="info">
-          <strong>{{ mon(s) ? name(mon(s)) : s.pokemon }}<span
-            v-if="s.kind === 'alpha'"
-            class="chip"
-          >{{ $t('swarms.alphaChip') }}</span></strong>
-          <span class="muted">{{ where(s) }}</span>
-        </span>
-        <span class="time">{{ left(s) }}</span>
-      </NuxtLink>
-    </div>
+        <h3
+          v-if="group.list.length"
+          class="group"
+          :class="group.kind"
+        >
+          {{ $t(`swarms.heading.${group.kind}`, { n: group.list.length }) }}
+        </h3>
+        <div
+          v-if="group.list.length"
+          class="live"
+        >
+          <NuxtLink
+            v-for="s in group.list"
+            :key="s.id"
+            to="/essaims"
+            class="spawn"
+            :class="s.kind"
+          >
+            <span class="slot"><img
+              v-if="mon(s)"
+              class="px"
+              :src="icon(mon(s)!.id)"
+              alt=""
+              width="36"
+              height="36"
+            ></span>
+            <span class="info">
+              <strong>{{ mon(s) ? name(mon(s)) : s.pokemon }}<span
+                class="chip kind"
+                :class="s.kind"
+              >{{ s.kind === 'alpha' ? $t('swarms.alphaChip') : $t('swarms.swarmChip') }}</span></strong>
+              <span class="muted">{{ where(s) }}</span>
+            </span>
+            <span class="time">{{ left(s) }}</span>
+          </NuxtLink>
+        </div>
+      </template>
+    </template>
     <p
       v-else
       class="muted"
@@ -150,7 +165,12 @@ const party = computed(() => Array.from({ length: 6 }, (_, i) => collection.valu
 .now a { color: var(--text); }
 .live { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
 .spawn { display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); text-decoration: none; }
-.spawn.alpha { border-color: color-mix(in srgb, var(--accent) 55%, var(--border)); }
+.group { display: flex; align-items: center; gap: 8px; margin: 14px 0 8px; font-size: .9rem; font-weight: 700; }
+.group::before { content: ''; width: 10px; height: 10px; border-radius: 2px; background: var(--k); }
+.group.alpha, .spawn.alpha, .kind.alpha { --k: var(--accent); }
+.group.swarm, .spawn.swarm, .kind.swarm { --k: var(--cool); }
+.spawn { border-left: 4px solid var(--k); }
+.chip.kind { margin-left: 2px; background: color-mix(in srgb, var(--k) 28%, var(--surface-2)); }
 .spawn:hover { filter: brightness(1.08); }
 .spawn .slot { width: 48px; height: 48px; }
 .info { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.3; font-size: .9rem; }

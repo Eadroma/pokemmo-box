@@ -123,7 +123,7 @@
     "project": "Project",
     "source": "Source code on GitHub",
     "license": "License",
-    "issues": "Report a problem",
+    "issues": "Report a problem or suggest an improvement",
     "copyright": "© {year} {owner}. Source available, all rights reserved.",
     "disclaimer": "Fan project, not affiliated with Nintendo, The Pokémon Company, GAME FREAK or PokeMMO. Pokémon and related names are trademarks of their respective owners."
   },
@@ -416,7 +416,8 @@
     "ago": "{m} min ago",
     "ability": "Ability: {ability}",
     "hms": "HMs: {hms}",
-    "alphaChip": "Alpha"
+    "alphaChip": "Alpha",
+    "swarmChip": "Swarm"
   },
   "guides": {
     "title": "Guides",
