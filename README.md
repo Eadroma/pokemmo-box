@@ -44,6 +44,16 @@ npm run check      # all three, as in CI
 Set `NUXT_PUBLIC_SITE_URL` (e.g. `https://pokemmo-box.example`) when generating the deployed site: it fills the
 canonical links, `og:url`, `og:image`, `sitemap.xml` and the sitemap line of `robots.txt`.
 
+### Deploy
+
+The site is hosted on Cloudflare Pages: <https://pokemmo-box.pages.dev>. CI can't build it (the game data isn't in
+the repo), so deploy from a machine that ran `npm run data`:
+
+```sh
+npx wrangler@4 login   # once
+npm run deploy         # checks, builds with NUXT_PUBLIC_SITE_URL, uploads .output/public to the pokemmo-box Pages project
+```
+
 ### Translations
 
 No raw text in templates: the `@intlify/vue-i18n/no-raw-text` rule forbids it. UI strings live in

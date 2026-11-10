@@ -33,7 +33,8 @@ export default defineNuxtConfig({
   routeRules: { '/collection': { ssr: false }, '/team': { ssr: false }, '/baies': { ssr: false }, '/cosmetiques': { ssr: false }, '/essaims': { ssr: false }, '/guides/**': { ssr: false }, '/elevage': { ssr: false } },
   compatibilityDate: '2026-11-01',
   // Every Pokédex page, including unobtainable species the list hides by default (so the crawler misses them).
-  nitro: { prerender: { crawlLinks: true, routes: ['/', '/sitemap.xml', '/robots.txt', ...species().map(s => `/pokedex/${s.id}`)] } },
+  // autoSubfolderIndex false: /pokedex/445.html, which Cloudflare Pages serves at /pokedex/445 (no slash redirect, matches canonical URLs).
+  nitro: { prerender: { crawlLinks: true, autoSubfolderIndex: false, routes: ['/', '/sitemap.xml', '/robots.txt', ...species().map(s => `/pokedex/${s.id}`)] } },
   eslint: { config: { stylistic: true } },
   i18n: {
     defaultLocale: 'fr',
