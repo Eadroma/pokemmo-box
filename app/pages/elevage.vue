@@ -4,7 +4,7 @@ import type { Stat } from '~/utils/pokemon'
 import type { BreedNode } from '~/utils/breeding'
 
 const { t } = useI18n()
-useHead({ title: t('meta.title', { page: t('breeding.title') }) })
+usePageSeo(() => t('meta.title', { page: t('breeding.title') }), () => t('home.breeding'))
 const picked = ref<Stat[]>(['hp', 'atk', 'def', 'spe'])
 const withNature = ref(true)
 const label = (a: string) => (a === 'nature' ? (target.value.species ? natureName(target.value.nature) : t('breeding.nature')) : t(`stats.${a}`))

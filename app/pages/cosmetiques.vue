@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const { name } = useLoc()
-useHead({ title: t('meta.title', { page: t('cosmetics.title') }) })
+usePageSeo(() => t('meta.title', { page: t('cosmetics.title') }), () => t('home.cosmetics'))
 
 const all = ref<Cosmetic[]>([])
 const loadError = ref(false)

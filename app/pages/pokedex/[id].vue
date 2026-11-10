@@ -23,7 +23,11 @@ const { data } = await useAsyncData(`dex-${id}`, async () => {
 })
 if (!data.value) throw createError({ statusCode: 404, message: t('pokedex.notFound') })
 const d = computed(() => data.value!)
-useHead({ title: () => t('meta.title', { page: name(d.value.s) }) })
+usePageSeo(
+  () => t('meta.title', { page: name(d.value.s) }),
+  () => t('seo.mon', { name: name(d.value.s), id: d.value.s.id, types: d.value.s.types.map(ty => t(`types.${ty}`)).join(' / ') }),
+  () => sprite(d.value.s.id),
+)
 
 // Smogon Gen 5 sets, fetched in the browser (not part of the prerendered payload).
 const sets = ref<SmogonSet[]>([])

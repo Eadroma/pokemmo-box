@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
 const { name } = useLoc()
-useHead({ title: t('meta.title', { page: t('berries.title') }) })
+usePageSeo(() => t('meta.title', { page: t('berries.title') }), () => t('home.berries'))
 interface Plot { berry: string, icon: number, plantedAt: number, hours: number, place: string }
 const plots = usePersisted<Plot[]>('pokemmo:berries', [])
 // The game dump has no growth times, so the player enters them once per berry.

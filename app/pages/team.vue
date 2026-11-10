@@ -4,7 +4,7 @@ import type { Box, BoxMon } from '~/composables/useCollection'
 const { t } = useI18n()
 const { name, nature, monName } = useLoc()
 const route = useRoute()
-useHead({ title: t('meta.title', { page: t('team.title') }) })
+usePageSeo(() => t('meta.title', { page: t('team.title') }), () => t('home.team'))
 const collection = useCollection()
 const { teams, current, team, add } = useTeams()
 const game = ref<Awaited<ReturnType<typeof loadGame>> | null>(null)

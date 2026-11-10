@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHead({ title: t('meta.title', { page: t('swarms.title') }) })
+usePageSeo(() => t('meta.title', { page: t('swarms.title') }), () => t('home.swarms'))
 const { loadError, now, alphas, swarms, ended, moves, abilities, mon, fr, minutes, left, where } = useSpawns()
 const { name } = useLoc()
 const { list: watched, enabled, permission, toggle, enable } = useWatch()

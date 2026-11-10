@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t, locale } = useI18n()
 const g$ = useGuideText()
-useHead({ title: t('meta.title', { page: t('guides.rune.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.rune.title') }), () => t('guides.rune.card'))
 
 // Guide text in French, translated through useGuideText(); method from Eevelen's « Farmeo Amuleto » guide.
 const STEPS = [

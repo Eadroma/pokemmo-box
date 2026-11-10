@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const { name, place, egg: eggName } = useLoc()
-useHead({ title: t('meta.title', { page: t('nav.pokedex') }) })
+usePageSeo(() => t('meta.title', { page: t('nav.pokedex') }), () => t('home.pokedex'))
 const { data } = await useAsyncData('dex', async () => {
   const g = await loadGame()
   return { species: g.species, abilities: g.abilities, moves: Object.fromEntries(Object.entries(g.moves).map(([id, m]) => [id, { name: m.name, en: m.en, es: m.es }])) }

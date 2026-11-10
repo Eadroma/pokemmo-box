@@ -4,7 +4,7 @@ import { GYMS, PREP, REGIONS, URGENT } from '~/utils/sevenHells'
 const { t } = useI18n()
 const { place } = useLoc()
 const g$ = useGuideText()
-useHead({ title: t('meta.title', { page: t('guides.hells.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.hells.title') }), () => t('guides.hells.card'))
 
 // Progress and filters stay in this browser.
 const state = usePersisted('pokemmo:guide:7hells', { done: [] as string[], cur: 'h2', region: '', hideOpt: false, prep: [] as string[], tab: 'route' })

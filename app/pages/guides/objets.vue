@@ -3,7 +3,7 @@ import type { Horde } from '~/utils/evs'
 
 // "Where to farm this item": wild Pokémon that can hold it (scripts/build-data.mjs → helditems.json) and where they appear.
 const { t } = useI18n()
-useHead({ title: t('meta.title', { page: t('guides.items.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.items.title') }), () => t('guides.items.card'))
 const { name, place, kind } = useLoc()
 
 const held = ref<Record<number, number[]>>({})

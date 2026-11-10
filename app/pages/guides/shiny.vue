@@ -3,7 +3,7 @@ import type { Horde } from '~/utils/evs'
 
 // Shiny hunt counter: encounters, odds with Donator / Shiny Charm (utils/shiny.ts), best hordes for the target.
 const { t, locale } = useI18n()
-useHead({ title: t('meta.title', { page: t('guides.shiny.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.shiny.title') }), () => t('guides.shiny.card'))
 const { name, place, kind, season } = useLoc()
 const SOURCES = ['PokeMMO Wiki', 'Pikammo'] // site names, not translated
 

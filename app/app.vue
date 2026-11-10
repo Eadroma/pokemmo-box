@@ -1,5 +1,7 @@
 <script setup lang="ts">
 const route = useRoute()
+const { locale } = useI18n()
+useHead({ htmlAttrs: { lang: locale } })
 const { list: watched, enabled: watching } = useWatch()
 const links = [
   { to: '/pokedex', key: 'nav.pokedex' },
@@ -43,6 +45,7 @@ const links = [
     </nav>
   </header>
   <main><NuxtPage /></main>
+  <AppFooter />
   <ClientOnly>
     <SpawnWatcher v-if="watching && watched.length" />
   </ClientOnly>

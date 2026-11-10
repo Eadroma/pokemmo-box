@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      # postinstall runs `nuxt prepare`, which generates the ESLint and TypeScript config lint/typecheck need.
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      # Game assets aren't in the repo (see README): the test reading a local game dump skips itself.
+      - run: npm test

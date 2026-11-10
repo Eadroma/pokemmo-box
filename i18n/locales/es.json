@@ -103,6 +103,30 @@
     "swarms": "Los alfas y enjambres avisados en directo por los jugadores, con habilidad, movimientos y mejor Ball.",
     "guides": "Moneda Amuleto, 7 Hells, EVs, shinies y objetos para farmear, conectados a tu colección: ves al instante qué Pokémon están listos."
   },
+  "seo": {
+    "homeTitle": "PokeMMO Box: herramientas y guías para PokeMMO",
+    "home": "Pokédex de PokeMMO con lugares y hordas, importación de tu colección, team builder, simulador de crianza, guías (Moneda Amuleto, 7 Hells, EVs, shinies) y alfas en directo.",
+    "mon": "{name} (#{id}, {types}) en PokeMMO: dónde capturarlo, hordas, habilidades, movimientos, EVs que da y sets recomendados."
+  },
+  "footer": {
+    "about": "Herramientas de fans para PokeMMO, creadas a partir de los datos que exporta el juego. Tu colección se queda en tu navegador.",
+    "data": "Datos",
+    "game": "Exportación del juego PokeMMO · Pokémon, lugares, hordas, sprites",
+    "pokeapi": "nombres en inglés y español",
+    "smogon": "sets recomendados (Gen 5)",
+    "alphapedia": "alfas y enjambres en directo",
+    "guides": "Guías",
+    "eevelen": "guías de Moneda Amuleto y EVs",
+    "hells": "ruta 7 Hells",
+    "wiki": "probabilidad shiny",
+    "pikammo": "caza de shinies",
+    "project": "Proyecto",
+    "source": "Código fuente en GitHub",
+    "license": "Licencia",
+    "issues": "Informar de un problema",
+    "copyright": "© {year} {owner}. Código fuente visible, todos los derechos reservados.",
+    "disclaimer": "Proyecto de fans sin afiliación con Nintendo, The Pokémon Company, GAME FREAK ni PokeMMO. Pokémon y los nombres asociados son marcas de sus respectivos propietarios."
+  },
   "meta": {
     "title": "{page} — PokeMMO Box"
   },

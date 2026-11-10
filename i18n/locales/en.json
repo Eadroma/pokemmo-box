@@ -103,6 +103,30 @@
     "swarms": "Alphas and swarms reported live by players, with ability, moves and best Ball.",
     "guides": "Amulet Coin, 7 Hells, EVs, shinies and item farming, linked to your collection: see at once which Pokémon are ready."
   },
+  "seo": {
+    "homeTitle": "PokeMMO Box: tools and guides for PokeMMO",
+    "home": "PokeMMO Pokédex with locations and hordes, collection import, team builder, breeding simulator, guides (Amulet Coin, 7 Hells, EVs, shinies) and live alphas.",
+    "mon": "{name} (#{id}, {types}) in PokeMMO: where to catch it, hordes, abilities, moves, EV yield and recommended sets."
+  },
+  "footer": {
+    "about": "Fan-made tools for PokeMMO, built from the data the game exports. Your collection stays in your browser.",
+    "data": "Data",
+    "game": "PokeMMO game export · Pokémon, places, hordes, sprites",
+    "pokeapi": "English and Spanish names",
+    "smogon": "recommended sets (Gen 5)",
+    "alphapedia": "live alphas and swarms",
+    "guides": "Guides",
+    "eevelen": "Amulet Coin and EV guides",
+    "hells": "7 Hells route",
+    "wiki": "shiny odds",
+    "pikammo": "shiny hunting",
+    "project": "Project",
+    "source": "Source code on GitHub",
+    "license": "License",
+    "issues": "Report a problem",
+    "copyright": "© {year} {owner}. Source available, all rights reserved.",
+    "disclaimer": "Fan project, not affiliated with Nintendo, The Pokémon Company, GAME FREAK or PokeMMO. Pokémon and related names are trademarks of their respective owners."
+  },
   "meta": {
     "title": "{page} — PokeMMO Box"
   },

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHead({ title: t('meta.title', { page: t('guides.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.title') }), () => t('guides.intro'))
 const GUIDES = [
   { to: '/guides/piece-rune', title: 'guides.rune.title', text: 'guides.rune.card', mon: 52 },
   { to: '/guides/7-hells', title: 'guides.hells.title', text: 'guides.hells.card', mon: 530 },

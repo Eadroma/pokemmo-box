@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n()
-useHead({ title: t('app.name') })
+usePageSeo(() => t('seo.homeTitle'), () => t('seo.home'))
 // Each tool gets a Pokémon that fits it: Rotom (dex), Drattak (live alphas), Porygon (data import), Carchacrok (team), Métamorph (breeding), Tropius (berries), Queulorior (cosmetics).
 const tools = [
   { to: '/pokedex', title: 'nav.pokedex', text: 'home.pokedex', mon: 479 },

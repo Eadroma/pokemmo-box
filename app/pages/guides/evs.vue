@@ -3,7 +3,7 @@ import type { Stat } from '~/utils/pokemon'
 import type { Horde } from '~/utils/evs'
 
 const { t } = useI18n()
-useHead({ title: t('meta.title', { page: t('guides.evs.title') }) })
+usePageSeo(() => t('meta.title', { page: t('guides.evs.title') }), () => t('guides.evs.card'))
 
 const hordes = ref<Horde[]>([])
 const species = ref<Record<number, Species>>({})

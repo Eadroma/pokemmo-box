@@ -6,7 +6,7 @@ import type { AuditTag } from '~/utils/audit'
 const { t, te } = useI18n()
 const { name, nature, monName } = useLoc()
 const g$ = useGuideText()
-useHead({ title: t('meta.title', { page: t('collection.title') }) })
+usePageSeo(() => t('meta.title', { page: t('collection.title') }), () => t('home.collection'))
 const collection = useCollection()
 const { team, current, add } = useTeams()
 const game = ref<Awaited<ReturnType<typeof loadGame>> | null>(null)
