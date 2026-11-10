@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// values keyed by Stat (hp, atk…); max sets the full bar width.
-const props = withDefaults(defineProps<{ values: Record<Stat, number>, max?: number, plus?: Stat, minus?: Stat }>(), { max: 255, plus: undefined, minus: undefined })
+// values keyed by Stat (hp, atk…); max sets the full bar width; totalOf, when given, shows the total as "n / totalOf" (EVs, IVs).
+const props = withDefaults(defineProps<{ values: Record<Stat, number>, max?: number, plus?: Stat, minus?: Stat, totalOf?: number }>(), { max: 255, plus: undefined, minus: undefined, totalOf: undefined })
 const total = computed(() => STATS.reduce((a, k) => a + props.values[k], 0))
 </script>
 
@@ -26,7 +26,11 @@ const total = computed(() => STATS.reduce((a, k) => a + props.values[k], 0))
         <td class="n">
           {{ total }}
         </td>
-        <td />
+        <td class="of">
+          <template v-if="totalOf">
+            / {{ totalOf }}
+          </template>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -36,6 +40,7 @@ const total = computed(() => STATS.reduce((a, k) => a + props.values[k], 0))
 .stats th { width: 70px; border: 0; padding: 2px 6px 2px 0; }
 .stats td { border: 0; padding: 2px 0; }
 .n { width: 42px; text-align: right; padding-right: 8px !important; font-variant-numeric: tabular-nums; }
+.of { color: var(--muted); font-size: .85em; font-variant-numeric: tabular-nums; }
 .bar span { display: block; height: 8px; border-radius: 4px; }
 .plus { color: var(--bad); } .minus { color: #4a8fe0; }
 .plus::after { content: ' +'; } .minus::after { content: ' −'; }

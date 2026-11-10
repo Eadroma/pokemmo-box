@@ -304,6 +304,8 @@
     "dataLoad": "Couldn’t load the game data — reload the page"
   },
   "team": {
+    "viewStats": "Stats",
+    "viewLabel": "Show",
     "share": {
       "copy": "Copy share link",
       "received": "Shared team: {name} ({n} Pokémon)",

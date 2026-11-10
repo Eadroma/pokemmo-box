@@ -304,6 +304,8 @@
     "dataLoad": "No se pudieron cargar los datos del juego — recarga la página"
   },
   "team": {
+    "viewStats": "Estadísticas",
+    "viewLabel": "Mostrar",
     "share": {
       "copy": "Copiar enlace para compartir",
       "received": "Equipo compartido: {name} ({n} Pokémon)",

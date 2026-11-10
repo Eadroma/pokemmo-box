@@ -41,6 +41,10 @@ async function copyLink() {
 
 const LEVEL = 50 // PokeMMO PvP scales teams to level 50
 const LEVITATE = 26
+// Per-card view of the bars: computed stats at level 50, or the raw EVs / IVs.
+type View = 'stats' | 'ev' | 'iv'
+const views = ref<Record<number, View>>({})
+const VIEWS: { key: View, label: string }[] = [{ key: 'stats', label: 'team.viewStats' }, { key: 'ev', label: 'stats.ev' }, { key: 'iv', label: 'stats.iv' }]
 
 const nameOf = (i: number) => teams.value[i]?.name || t('team.defaultName', { n: i + 1 })
 function newTeam() {
@@ -257,8 +261,35 @@ const multLabel = (v: number) => (v === 1 ? '' : v === 0.25 ? '¼' : v === 0.5 ?
           </div>
         </div>
       </div>
+      <div
+        class="tabs view"
+        role="tablist"
+        :aria-label="$t('team.viewLabel')"
+      >
+        <button
+          v-for="v in VIEWS"
+          :key="v.key"
+          role="tab"
+          :aria-selected="(views[i] ?? 'stats') === v.key"
+          @click="views[i] = v.key"
+        >
+          {{ $t(v.label) }}
+        </button>
+      </div>
       <StatBars
-        v-if="x.stats"
+        v-if="(views[i] ?? 'stats') === 'ev'"
+        :values="parseSpread(x.m.evs)"
+        :max="EV_CAP"
+        :total-of="EV_TOTAL"
+      />
+      <StatBars
+        v-else-if="views[i] === 'iv'"
+        :values="parseSpread(x.m.ivs)"
+        :max="31"
+        :total-of="186"
+      />
+      <StatBars
+        v-else-if="x.stats"
         :values="x.stats"
         :max="250"
         :plus="x.nature?.plus"
@@ -400,6 +431,8 @@ const multLabel = (v: number) => (v === 1 ? '' : v === 0.25 ? '¼' : v === 0.5 ?
 .head .row { margin: 4px 0; gap: 3px; }
 .head .muted { font-size: .85rem; }
 .actions { margin-top: auto; }
+.view { align-self: flex-start; margin-bottom: -4px; }
+.view button { min-height: 26px; padding: 0 12px; font-size: .8rem; }
 .empty { border: 2px dashed var(--border); border-radius: var(--radius); padding: 40px 16px; text-align: center; }
 .moves { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; font-size: .9rem; }
 .moves :deep(.type) { min-width: 64px; margin-right: 6px; }
