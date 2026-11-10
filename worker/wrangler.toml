@@ -1,0 +1,12 @@
+name = "pokemmo-box-events"
+main = "src/index.ts"
+compatibility_date = "2026-11-01"
+workers_dev = true
+preview_urls = false
+
+# Filled by `npx wrangler kv namespace create EVENTS` (see README).
+[[kv_namespaces]]
+binding = "EVENTS"
+id = "9e04395e476a47749ff72818b35d9c6c"
+
+# HOOK_SECRET is set with `npx wrangler secret put HOOK_SECRET`, never committed.

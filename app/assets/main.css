@@ -1,0 +1,76 @@
+/* PC-box look: sprites sit in recessed "slots"; gold marks only the selection (like the in-game cursor) and primary actions. */
+:root {
+  --bg: #e4ebe8; --surface: #fafcfb; --surface-2: #d8e2de; --well: #cddad5; --text: #10261f; --muted: #4e6961; --border: #c4d3cd; --grid: rgb(16 38 31 / 4.5%);
+  --accent: #f2c230; --accent-text: #2a2000; --good: #1d8653; --bad: #c83b33; --cool: #2a6cb3;
+  --radius: 14px; --radius-sm: 10px; --shadow: none;
+  --font: 'Atkinson Hyperlegible Next', system-ui, sans-serif; --display: 'Pixelify Sans', var(--font);
+  /* Pixel-stepped corners: only sprite slots and the gold cursor get them, panels stay soft. */
+  --notch: polygon(0 6px, 3px 6px, 3px 3px, 6px 3px, 6px 0, calc(100% - 6px) 0, calc(100% - 6px) 3px, calc(100% - 3px) 3px, calc(100% - 3px) 6px, 100% 6px, 100% calc(100% - 6px), calc(100% - 3px) calc(100% - 6px), calc(100% - 3px) calc(100% - 3px), calc(100% - 6px) calc(100% - 3px), calc(100% - 6px) 100%, 6px 100%, 6px calc(100% - 3px), 3px calc(100% - 3px), 3px calc(100% - 6px), 0 calc(100% - 6px));
+  color-scheme: light;
+}
+/* Dark: follows the system unless the header toggle forced a theme (data-theme on <html>). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12221e; --surface: #192d28; --surface-2: #213a33; --well: #0b1714; --text: #e3eeea; --muted: #8ea89f; --border: #2a463e; --grid: rgb(227 238 234 / 3.5%);
+    --good: #5dcf8e; --bad: #ff7d72; --cool: #7db3f5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12221e; --surface: #192d28; --surface-2: #213a33; --well: #0b1714; --text: #e3eeea; --muted: #8ea89f; --border: #2a463e; --grid: rgb(227 238 234 / 3.5%);
+    --good: #5dcf8e; --bad: #ff7d72; --cool: #7db3f5;
+    color-scheme: dark;
+}
+* { box-sizing: border-box; }
+/* Faint tile grid, like a PC box wallpaper. */
+body { margin: 0; background: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px) var(--bg); background-size: 24px 24px; color: var(--text); font: 15px/1.55 var(--font); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img.px { image-rendering: pixelated; }
+main { max-width: 1200px; margin: 0 auto; padding: 32px 16px 80px; }
+h1 { font: 600 2.4rem/1.05 var(--display); margin: 0 0 8px; }
+h2 { font-size: 1.12rem; font-weight: 700; margin: 36px 0 12px; }
+p { margin: 0 0 12px; }
+.muted { color: var(--muted); }
+.lead { color: var(--muted); max-width: 62ch; margin-bottom: 24px; }
+code { font-size: .85em; background: var(--surface-2); padding: 1px 5px; border-radius: 5px; }
+
+/* Panels */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+.grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--min, 160px)), 1fr)); }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.slot { display: grid; place-items: center; background: var(--well); flex: none; clip-path: var(--notch); box-shadow: inset 0 3px 0 rgb(0 0 0 / 10%); }
+
+/* Controls: one height everywhere so toolbars line up */
+input, select, button, textarea { font: inherit; font-size: .9rem; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0 12px; min-height: 38px; }
+textarea { padding: 10px 12px; }
+input[type="checkbox"] { min-height: 0; width: 16px; height: 16px; accent-color: var(--accent); margin: 0; }
+select { appearance: none; padding-right: 32px; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%238e98b4' stroke-width='2'%3E%3Cpath d='m3 4.5 3 3 3-3'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+select option { background: var(--surface); color: var(--text); }
+input::placeholder { color: var(--muted); }
+button { cursor: pointer; background: var(--surface-2); border-color: transparent; font-weight: 550; }
+button:hover:not(:disabled) { filter: brightness(1.08); }
+button.primary { background: var(--accent); color: var(--accent-text); }
+button.ghost { background: transparent; border-color: var(--border); }
+button:disabled { opacity: .45; cursor: default; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+label.row { gap: 6px; font-size: .9rem; cursor: pointer; }
+
+/* Segmented tabs (boxes, teams) */
+.tabs { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 3px; background: var(--surface-2); border-radius: 12px; }
+.tabs button { background: transparent; min-height: 32px; border-radius: 9px; color: var(--muted); }
+.tabs button[aria-selected="true"], .tabs button.primary { background: var(--accent); color: var(--accent-text); clip-path: var(--notch); border-radius: 0; }
+
+/* Tables */
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 550; color: var(--muted); font-size: .8rem; }
+.scroll-x { overflow-x: auto; }
+.chip { display: inline-flex; align-items: center; min-height: 0; padding: 1px 8px; border-radius: 999px; background: var(--surface-2); font-size: .78rem; font-weight: 550; }
+.err { color: var(--bad); }
+.num { font-variant-numeric: tabular-nums; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+/* progress bar (cosmetics, guides) */ .progress { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; font-size: .9rem; font-weight: 550; }
+.track { flex: 1; max-width: 320px; height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.track span { display: block; height: 100%; background: var(--accent); }

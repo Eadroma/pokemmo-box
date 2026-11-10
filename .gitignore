@@ -1,0 +1,11 @@
+node_modules
+.nuxt
+.output
+.data
+dist
+.cache
+.wrangler
+worker/.secret
+# Generated from the game client by `npm run data`: game assets, not ours to publish.
+public/data
+public/sprites

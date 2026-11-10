@@ -1,0 +1,39 @@
+Copyright (c) 2026 Eadroma. All rights reserved.
+
+This repository is made public so its source code can be read and so people
+can contribute to it. Publishing it does not grant any open-source license.
+
+You MAY:
+  - view and read the source code on GitHub;
+  - fork it on GitHub, as allowed by the GitHub Terms of Service, only to
+    open issues or pull requests against this repository;
+  - run it on your own computer for your personal, non-commercial use.
+
+You MAY NOT, without the prior written permission of the copyright holder:
+  - copy, modify, merge, publish, distribute, sublicense or sell this code or
+    any substantial part of it;
+  - host, deploy or publish it, or a modified version of it, as a website,
+    application or service;
+  - use it, or a work derived from it, in another project.
+
+Contributions: by submitting a pull request, you agree that your contribution
+may be included in this project under these same terms, and that you have the
+right to submit it.
+
+Third-party content is not covered by this notice and stays the property of
+its owners:
+  - Pokémon names, sprites and game data belong to Nintendo, Creatures Inc. and
+    GAME FREAK inc.; PokeMMO data belongs to its developers. None of these
+    files are included in this repository: they are generated locally from
+    your own game client (see README).
+  - Alphapedia (alpha.pokemmotools.org) data is used under its Custom Webhook
+    terms; recommended sets come from Smogon; English and Spanish names come
+    from PokeAPI; guides are adapted from community authors credited on each
+    guide page.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY ARISING FROM THE USE OF THE SOFTWARE.
+
+PokeMMO Box is a fan project, not affiliated with or endorsed by Nintendo,
+The Pokémon Company, GAME FREAK or PokeMMO.
