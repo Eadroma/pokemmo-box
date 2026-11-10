@@ -4,8 +4,8 @@ interface Localized { name: string, en?: string | null, es?: string | null }
 
 // Words of the encounter-place suffixes ("Zone Nord", "Ss1", "2em"…), translated word by word.
 const PARTS: Record<string, Record<string, string>> = {
-  en: { Zone: 'Area', Sone: 'Area', Nord: 'North', Sud: 'South', Est: 'East', Ouest: 'West', Centrale: 'Central', Centre: 'Center', Intérieur: 'Inside', Extérieur: 'Outside', Entrée: 'Entrance', Porte: 'Gate', Toit: 'Roof', Tour: 'Tower', Versant: 'Slope', Grotte: 'Cave', Forêt: 'Forest', Profondeurs: 'Depths', Salle: 'Room', Arrière: 'Back', Pièce: 'Room', Cachée: 'Hidden', Chambre: 'Room', Froide: 'Cold', Partie: 'Part', Sup: 'Upper', Inf: 'Lower', Inférieur: 'Lower', Supérieur: 'Upper', Somment: 'Summit', Chenal: 'Route', Montagne: 'Mountain', Manger: 'Dining', à: '', de: '', la: '' },
-  es: { Zone: 'Zona', Sone: 'Zona', Nord: 'Norte', Sud: 'Sur', Est: 'Este', Ouest: 'Oeste', Centrale: 'Central', Centre: 'Centro', Intérieur: 'Interior', Extérieur: 'Exterior', Entrée: 'Entrada', Porte: 'Puerta', Toit: 'Tejado', Tour: 'Torre', Versant: 'Ladera', Grotte: 'Cueva', Forêt: 'Bosque', Profondeurs: 'Profundidades', Salle: 'Sala', Arrière: 'Trasera', Pièce: 'Sala', Cachée: 'Oculta', Chambre: 'Cámara', Froide: 'Fría', Partie: 'Parte', Sup: 'Superior', Inf: 'Inferior', Inférieur: 'Inferior', Supérieur: 'Superior', Somment: 'Cima', Chenal: 'Ruta', Montagne: 'Montaña', Manger: 'Comedor', à: '', de: '', la: '' },
+  en: { Zone: 'Area', Sone: 'Area', Nord: 'North', Sud: 'South', Est: 'East', Ouest: 'West', Centrale: 'Central', Centre: 'Center', Intérieur: 'Inside', Extérieur: 'Outside', Entrée: 'Entrance', Porte: 'Gate', Toit: 'Roof', Tour: 'Tower', Versant: 'Slope', Grotte: 'Cave', Forêt: 'Forest', Profondeurs: 'Depths', Salle: 'Room', Arrière: 'Back', Pièce: 'Room', Cachée: 'Hidden', Chambre: 'Room', Froide: 'Cold', Partie: 'Part', Sup: 'Upper', Inf: 'Lower', Inférieur: 'Lower', Supérieur: 'Upper', Somment: 'Summit', Chenal: 'Route', Montagne: 'Mountain', Manger: 'Dining', Feu: 'Fire', Plante: 'Grass', Eau: 'Water', à: '', de: '', la: '' },
+  es: { Zone: 'Zona', Sone: 'Zona', Nord: 'Norte', Sud: 'Sur', Est: 'Este', Ouest: 'Oeste', Centrale: 'Central', Centre: 'Centro', Intérieur: 'Interior', Extérieur: 'Exterior', Entrée: 'Entrada', Porte: 'Puerta', Toit: 'Tejado', Tour: 'Torre', Versant: 'Ladera', Grotte: 'Cueva', Forêt: 'Bosque', Profondeurs: 'Profundidades', Salle: 'Sala', Arrière: 'Trasera', Pièce: 'Sala', Cachée: 'Oculta', Chambre: 'Cámara', Froide: 'Fría', Partie: 'Parte', Sup: 'Superior', Inf: 'Inferior', Inférieur: 'Inferior', Supérieur: 'Superior', Somment: 'Cima', Chenal: 'Ruta', Montagne: 'Montaña', Manger: 'Comedor', Feu: 'Fuego', Plante: 'Planta', Eau: 'Agua', à: '', de: '', la: '' },
 }
 // Floors: RDC = ground floor (1F), "1er" = 1F above ground (2F), "Ss2" = 2nd basement (B2F).
 const floor = (w: string) => w === 'RDC' ? '1F' : /^\d+(er|em)$/.test(w) ? `${Number.parseInt(w) + 1}F` : /^Ss\d+$/.test(w) ? `B${w.slice(2)}F` : null
@@ -29,10 +29,12 @@ export function useLoc() {
   // Encounter places carry a floor/part suffix ("Mont Creuset (Ss1)"): translate the base, keep the suffix.
   const place = (fr: string) => {
     if (locale.value === 'fr') return fr
-    const m = fr.match(/^(.*?)( \(.*\))?$/)!
+    // Suffixes: " (Ss1)" for encounter places, " · Feu" for the 7 Hells triple gym (Ogoesse).
+    const m = fr.match(/^(.*?)( \(.*\)| · .*)?$/)!
     const tr = places.value[m[1]!]
     const parts = PARTS[locale.value] ?? {}
-    const suffix = m[2] && ` (${m[2].slice(2, -1).split(' ').map(w => floor(w) ?? parts[w] ?? w).filter(Boolean).join(' ')})`
+    const words = (x: string) => x.split(' ').map(w => floor(w) ?? parts[w] ?? w).filter(Boolean).join(' ')
+    const suffix = m[2] && (m[2].startsWith(' (') ? ` (${words(m[2].slice(2, -1))})` : ` · ${words(m[2].slice(3))}`)
     return (tr ? tr[locale.value === 'en' ? 0 : 1] : m[1]!) + (suffix || '')
   }
   // Index = nature_string_id - 180000 (game order).

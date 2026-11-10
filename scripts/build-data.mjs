@@ -191,10 +191,15 @@ const allPlaces = new Set([
   ...Object.values(MAPS).flatMap(m => m.towns.map(t => t.name)),
   ...GYMS.map(g => g.city),
 ])
-const places = {}
+// The game's French names that differ from PokeAPI's, and places PokeAPI doesn't have at all.
+const PLACE_ALIAS = { 'Village Myokara': 'Myokara', 'Entree Canyon': 'Entrée du Canyon', 'Pre De L\'Ile 5': 'Pré Ile 5', 'Grotte Ruineman.': 'Grotte Ruinem.' }
+const PLACE_MANUAL = { 'Repaire Rocket': ['Rocket Hideout', 'Guarida Rocket'], 'Tunnel Ruineman.': ['Ruin Maniac Tunnel', 'Ruin Maniac Tunnel'] }
+const places = { ...PLACE_MANUAL }
 for (const p of allPlaces) {
-  const n = regionNames.idOf(p) !== undefined ? regionNames : placeNames
-  const en = n.enFr(p), es = n.esFr(p)
+  if (PLACE_MANUAL[p]) continue
+  const q = PLACE_ALIAS[p] ?? p
+  const n = regionNames.idOf(q) !== undefined ? regionNames : placeNames
+  const en = n.enFr(q), es = n.esFr(q)
   if (en || es) places[p] = [en ?? p, es ?? en ?? p]
 }
 write('places', places)
