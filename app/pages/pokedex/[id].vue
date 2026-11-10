@@ -14,7 +14,8 @@ const { data } = await useAsyncData(`dex-${id}`, async () => {
   return {
     s, detail,
     abilities: [...new Set(s.abilities)].map(a => g.abilities[a] ?? { name: '?', en: null }),
-    moves: detail.moves.map(m => ({ ...m, ...g.moves[m.id]! })),
+    // PokeMMO lists a few moves its own data export doesn't define (e.g. 883): nothing to show for those.
+    moves: detail.moves.filter(m => g.moves[m.id]).map(m => ({ ...m, ...g.moves[m.id]! })),
     evolutions: detail.evolutions.map(e => ({ ...e, n: names[e.id] ?? { name: `#${e.id}`, en: null, es: null } })),
     held: detail.heldItems.map(h => g.items[h]).filter(Boolean) as Item[],
     prev: names[id - 1] ? { id: id - 1, n: names[id - 1]! } : null,

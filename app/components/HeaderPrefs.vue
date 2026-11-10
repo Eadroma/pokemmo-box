@@ -1,6 +1,12 @@
 <script setup lang="ts">
 // Language flags + light/dark toggle. The theme is applied before paint by the inline script in nuxt.config.ts.
 const { locale, setLocale, t } = useI18n()
+// Remembered for a year; app/plugins/locale.client.ts applies it on the next visit.
+const lang = useCookie('pokemmo_lang', { maxAge: 60 * 60 * 24 * 365, sameSite: 'lax' })
+function pick(code: 'fr' | 'en' | 'es') {
+  lang.value = code
+  setLocale(code)
+}
 const LANGS = [
   { code: 'fr', label: 'Français' },
   { code: 'en', label: 'English' },
@@ -33,7 +39,7 @@ function toggleTheme() {
       :aria-label="l.label"
       :title="l.label"
       :lang="l.code"
-      @click="setLocale(l.code)"
+      @click="pick(l.code)"
     >
       <svg
         viewBox="0 0 30 20"

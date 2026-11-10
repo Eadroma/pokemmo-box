@@ -40,7 +40,7 @@ export default defineNuxtConfig({
     defaultLocale: 'fr',
     strategy: 'no_prefix',
     locales: [{ code: 'fr', language: 'fr-FR', file: 'fr.json' }, { code: 'en', language: 'en-GB', file: 'en.json' }, { code: 'es', language: 'es-ES', file: 'es.json' }],
-    // The flag choice is kept in a cookie; the first visit follows the browser language.
-    detectBrowserLanguage: { useCookie: true, cookieKey: 'pokemmo_lang', fallbackLocale: 'fr' },
+    // Applied after hydration by app/plugins/locale.client.ts (pages are prerendered in French).
+    detectBrowserLanguage: false,
   },
 })

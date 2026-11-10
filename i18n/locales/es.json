@@ -128,6 +128,13 @@
     "disclaimer": "Proyecto de fans sin afiliación con Nintendo, The Pokémon Company, GAME FREAK ni PokeMMO. Pokémon y los nombres asociados son marcas de sus respectivos propietarios.",
     "analytics": "Estadísticas de visitas anónimas y sin cookies (Cloudflare Web Analytics): no se recoge ningún dato personal."
   },
+  "errorPage": {
+    "notFound": "Página no encontrada",
+    "notFoundText": "Esta página no existe o ha cambiado de dirección.",
+    "other": "Se ha producido un error",
+    "otherText": "Recarga la página; si sigue pasando, avísalo en GitHub.",
+    "home": "Volver al inicio"
+  },
   "meta": {
     "title": "{page} — PokeMMO Box"
   },

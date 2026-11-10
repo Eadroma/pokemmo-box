@@ -486,7 +486,7 @@ const TIMES = ['guides.evs.morning', 'guides.evs.day', 'guides.evs.night'] as co
 .facts { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
 .facts .card { display: flex; flex-direction: column; gap: 2px; font-size: .92rem; }
 .k { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 650; }
-.plan { display: grid; gap: 12px; }
+.plan { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
 .row, .filters { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
 .field { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .field select { max-width: min(100%, 420px); }
