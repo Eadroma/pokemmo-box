@@ -125,7 +125,8 @@
     "license": "Licencia",
     "issues": "Informar de un problema o proponer una mejora",
     "copyright": "© {year} {owner}. Código fuente visible, todos los derechos reservados.",
-    "disclaimer": "Proyecto de fans sin afiliación con Nintendo, The Pokémon Company, GAME FREAK ni PokeMMO. Pokémon y los nombres asociados son marcas de sus respectivos propietarios."
+    "disclaimer": "Proyecto de fans sin afiliación con Nintendo, The Pokémon Company, GAME FREAK ni PokeMMO. Pokémon y los nombres asociados son marcas de sus respectivos propietarios.",
+    "analytics": "Estadísticas de visitas anónimas y sin cookies (Cloudflare Web Analytics): no se recoge ningún dato personal."
   },
   "meta": {
     "title": "{page} — PokeMMO Box"

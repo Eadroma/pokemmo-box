@@ -86,6 +86,7 @@ const OWNER = 'Eadroma'
     <div class="legal">
       <p>{{ $t('footer.copyright', { year: YEAR, owner: OWNER }) }}</p>
       <p>{{ $t('footer.disclaimer') }}</p>
+      <p>{{ $t('footer.analytics') }}</p>
     </div>
   </footer>
 </template>
